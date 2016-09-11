@@ -1,1 +1,1 @@
-Get-Service DHCP
+Get-Service -Name DHCP
