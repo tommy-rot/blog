@@ -13,10 +13,7 @@ $executionTimeTaken = Measure-Command -Expression {
       Reset-AzureRoleInstance -ServiceName $serviceName -Slot Production -InstanceName $instance.InstanceName -Reboot  
       do
       {
-        $instanceStatus = ((Get-AzureDeployment -ServiceName $serviceName -Slot Production).RoleInstanceList `
-          | Where-Object -FilterScript {
-            $_.InstanceName -eq $instance.InstanceName
-        }).InstanceStatus
+        $instanceStatus = ((Get-AzureDeployment -ServiceName $serviceName -Slot Production).RoleInstanceList | Where-Object -FilterScript { $_.InstanceName -eq $instance.InstanceName }).InstanceStatus
       }
       until ($instanceStatus -eq 'ReadyRole')
     }
